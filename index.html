@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auftragsverwaltung</title>
+  <meta name="theme-color" content="#5F5F5F" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon-192.png" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap');
+    html, body, #root { height: 100%; }
+    body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #F1F3F6; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    // Der Service Worker hat in der Vergangenheit wiederholt dazu geführt,
+    // dass veralteter Code hängen blieb. Statt weiter an dessen
+    // Cache-Strategie zu feilen: Jeden ggf. noch registrierten Service
+    // Worker aktiv abmelden und alle zugehörigen Caches löschen, damit
+    // garantiert nur noch direkt vom Server geladen wird.
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((regs) => {
+        regs.forEach((reg) => reg.unregister());
+      });
+    }
+    if (window.caches && caches.keys) {
+      caches.keys().then((keys) => keys.forEach((k) => caches.delete(k)));
+    }
+  </script>
+  <!-- "?v=" wird bei jedem Update hochgezählt, damit der Browser die Datei
+       garantiert als neu erkennt und nicht aus irgendeinem Cache bedient -->
+  <script src="bundle.js?v=60"></script>
+</body>
+</html>
