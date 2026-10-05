@@ -1,12 +1,12 @@
 {
-  "name": "Auftragsverwaltung",
-  "short_name": "Auftragsverwaltung",
+  "name": "Auftragsverwaltung GEBHARD",
+  "short_name": "Auftragsverwaltung GEBHARD",
   "description": "Verwaltung offener, geplanter und vorauskassenpflichtiger Kundenaufträge",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#F1F3F6",
-  "theme_color": "#5F5F5F",
+  "theme_color": "#AE0F0A",
   "orientation": "any",
   "icons": [
     { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
